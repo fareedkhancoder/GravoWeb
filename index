@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Gravo makes everyday shopping simple. Discover convenient shopping, manage your account, and find Gravo on Google Play.">
+  <title>Gravo — Everyday shopping, made simple</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #657086;
+      --brand: #3157d5;
+      --brand-dark: #2445b4;
+      --surface: #ffffff;
+      --line: #e8ebf2;
+      --bg: #f7f8fc;
+      --mint: #e8f5ef;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(232,235,242,.8);
+      background: rgba(247,248,252,.88);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 1.35rem; font-weight: 800; letter-spacing: -.7px; }
+    .brand-mark {
+      display: grid; place-items: center; width: 40px; height: 40px;
+      border-radius: 13px; color: white; background: var(--brand);
+      font-weight: 900; font-size: 1.2rem; box-shadow: 0 7px 18px rgba(49,87,213,.22);
+    }
+    .nav-links { display: flex; align-items: center; gap: 26px; color: var(--muted); font-size: .94rem; font-weight: 600; }
+    .nav-links a:hover, footer a:hover { color: var(--brand); }
+    .hero { padding: 88px 0 76px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 64px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px;
+      border: 1px solid #dfe6ff; border-radius: 999px; color: var(--brand);
+      background: #eef2ff; font-size: .8rem; font-weight: 750; letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 22px 0 18px; max-width: 650px; font-size: clamp(2.7rem, 5.7vw, 4.65rem); line-height: 1.06; letter-spacing: -.065em; }
+    h1 span { color: var(--brand); }
+    .hero-copy { max-width: 570px; color: var(--muted); font-size: 1.12rem; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; margin-top: 30px; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 10px;
+      min-height: 52px; padding: 0 21px; border-radius: 13px; font-weight: 750;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: white; background: var(--brand); box-shadow: 0 10px 22px rgba(49,87,213,.2); }
+    .btn-primary:hover { background: var(--brand-dark); }
+    .btn-secondary { color: var(--ink); background: white; border: 1px solid var(--line); }
+    .hero-art {
+      position: relative; display: grid; place-items: center; min-height: 390px;
+      border: 1px solid #e9edf8; border-radius: 34px;
+      background: radial-gradient(circle at 50% 35%, #e3eaff 0, #f0f3ff 38%, #fff 78%);
+    }
+    .orbit { position: absolute; width: 270px; height: 270px; border: 1px dashed #b9c7f5; border-radius: 50%; }
+    .app-tile {
+      position: relative; display: grid; place-items: center; width: 148px; height: 148px;
+      border-radius: 38px; color: white; background: linear-gradient(145deg, #496de8, #2445b4);
+      font-size: 4.3rem; font-weight: 900; letter-spacing: -8px; padding-right: 8px;
+      box-shadow: 0 24px 55px rgba(49,87,213,.3);
+    }
+    .float-card {
+      position: absolute; display: flex; align-items: center; gap: 11px; padding: 13px 16px;
+      border: 1px solid rgba(232,235,242,.9); border-radius: 15px; background: white;
+      box-shadow: 0 12px 30px rgba(26,39,75,.08); font-size: .88rem; font-weight: 700;
+    }
+    .float-card small { display: block; color: var(--muted); font-size: .73rem; font-weight: 500; }
+    .float-one { top: 55px; left: 10px; }
+    .float-two { right: 8px; bottom: 60px; }
+    .float-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; background: var(--mint); font-size: 1.1rem; }
+    .section { padding: 66px 0; }
+    .section-heading { max-width: 650px; margin: 0 auto 34px; text-align: center; }
+    .section-heading h2 { margin: 0 0 10px; font-size: clamp(1.8rem, 3vw, 2.45rem); letter-spacing: -.045em; }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature {
+      padding: 25px; border: 1px solid var(--line); border-radius: 19px; background: var(--surface);
+    }
+    .feature-icon { display: grid; place-items: center; width: 45px; height: 45px; margin-bottom: 17px; border-radius: 13px; background: #eef2ff; font-size: 1.25rem; }
+    .feature h3 { margin: 0 0 7px; font-size: 1.05rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .cta { padding: 38px; border-radius: 25px; color: white; background: #1e2d59; text-align: center; }
+    .cta h2 { margin: 0 0 9px; font-size: clamp(1.7rem, 3vw, 2.35rem); letter-spacing: -.04em; }
+    .cta p { margin: 0 auto 22px; max-width: 570px; color: #d3daf0; }
+    .cta .btn { color: #1e2d59; background: white; }
+    footer { margin-top: 70px; padding: 27px 0; border-top: 1px solid var(--line); background: white; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-copy { color: var(--muted); font-size: .86rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 22px; color: var(--muted); font-size: .88rem; font-weight: 600; }
+    @media (max-width: 780px) {
+      .hero { padding: 60px 0 45px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 38px; }
+      .hero-art { min-height: 320px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 13px; font-size: .82rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .container { width: min(100% - 30px, 1120px); }
+      header { padding: 15px 0; }
+      .nav { align-items: flex-start; flex-direction: column; gap: 14px; }
+      .nav-links { width: 100%; justify-content: space-between; }
+      .hero-art { min-height: 285px; }
+      .orbit { width: 215px; height: 215px; }
+      .app-tile { width: 120px; height: 120px; border-radius: 31px; font-size: 3.5rem; }
+      .float-one { top: 22px; left: 4px; }
+      .float-two { right: 4px; bottom: 24px; }
+      .float-card { padding: 10px 11px; font-size: .78rem; }
+      .float-icon { width: 30px; height: 30px; }
+      .cta { padding: 29px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="Gravo home">
+        <span class="brand-mark">G</span><span>gravo</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="account-deletion.html">Account Deletion</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span>●</span> Everyday shopping, simplified</div>
+          <h1>Your everyday needs. <span>One simple app.</span></h1>
+          <p class="hero-copy">
+            Meet Gravo — a convenient way to explore everyday products and shop from your phone.
+            Browse, choose what you need, and keep your shopping experience simple and organized.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.gravo.Meher" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">▶</span> Get it on Google Play
+            </a>
+            <a class="btn btn-secondary" href="privacy-policy.html">Privacy &amp; policies <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Gravo app illustration">
+          <div class="orbit"></div>
+          <div class="app-tile" aria-hidden="true">G.</div>
+          <div class="float-card float-one">
+            <span class="float-icon">🛍️</span>
+            <span>Easy shopping<small>Your essentials, made simple</small></span>
+          </div>
+          <div class="float-card float-two">
+            <span class="float-icon">📦</span>
+            <span>Order with ease<small>A convenient app experience</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Shopping made more convenient</h2>
+          <p>Gravo brings a straightforward shopping experience to your Android phone.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">🔎</div>
+            <h3>Explore products</h3>
+            <p>Browse everyday products and find the items you are looking for.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">🛒</div>
+            <h3>Simple ordering</h3>
+            <p>Add products to your cart and place orders through the app.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">📍</div>
+            <h3>Stay informed</h3>
+            <p>Keep track of your shopping and order information in one place.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="download">
+      <div class="container">
+        <div class="cta">
+          <h2>Ready to shop with Gravo?</h2>
+          <p>Install Gravo on your Android device and explore the app.</p>
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.gravo.Meher" target="_blank" rel="noopener noreferrer">
+            Get Gravo on Google Play <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <a class="brand" href="#"><span class="brand-mark">G</span><span>gravo</span></a>
+        <div class="footer-copy">© <span id="year"></span> Gravo. All rights reserved.</div>
+      </div>
+      <nav class="footer-links" aria-label="Legal navigation">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="account-deletion.html">Account Deletion</a>
+        <a href="https://play.google.com/store/apps/details?id=com.gravo.Meher" target="_blank" rel="noopener noreferrer">Google Play</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
